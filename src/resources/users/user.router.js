@@ -8,4 +8,9 @@ router.route('/').get(async (req, res) => {
   res.json(users.map(User.toResponse));
 });
 
+router.route('/').post(async (req, res) => {
+  const user = await usersService.create(req);
+  res.json(User.toResponse(user));
+});
+
 module.exports = router;
