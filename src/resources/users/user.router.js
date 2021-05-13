@@ -13,4 +13,13 @@ router.route('/').post(async (req, res) => {
   res.json(User.toResponse(user));
 });
 
+router.route('/:id').get(async (req, res) => {
+  const user = await usersService.get(req);
+  if (user.length) {
+    res.json(User.toResponse(user[0]));
+  }
+
+  res.status(404).send('User not found');
+});
+
 module.exports = router;

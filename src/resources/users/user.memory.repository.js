@@ -9,4 +9,6 @@ const create = async (req) => {
   return USER.toResponse(user);
 };
 
-module.exports = { getAll, create };
+const get = async (req) => DB.users.filter(user => user.id === req.params.id);
+
+module.exports = { getAll, create, get };
