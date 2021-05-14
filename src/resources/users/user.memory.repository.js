@@ -20,7 +20,7 @@ const update = async (req) => {
     return user;
   }
 
-  return null;
+  return false;
 };
 
 const delete_ = async (req) => {
