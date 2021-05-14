@@ -23,4 +23,13 @@ const update = async (req) => {
   return null;
 };
 
-module.exports = { getAll, create, get, update };
+const delete_ = async (req) => {
+  const index = DB.users.findIndex(user => user.id === req.params.id);
+  if(!index){
+    return false;
+  }
+  DB.users.splice(index, 1);
+  return true;
+};
+
+module.exports = { getAll, create, get, update, delete_ };
