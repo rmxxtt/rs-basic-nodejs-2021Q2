@@ -11,4 +11,16 @@ const create = async (req) => {
 
 const get = async (req) => DB.users.filter(user => user.id === req.params.id);
 
-module.exports = { getAll, create, get };
+const update = async (req) => {
+  const user = (await get(req))[0];
+  if (user) {
+    user.name = req.body.name;
+    user.login = req.body.login;
+    user.password = req.body.password;
+    return user;
+  }
+
+  return null;
+};
+
+module.exports = { getAll, create, get, update };
