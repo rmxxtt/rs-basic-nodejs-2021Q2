@@ -7,4 +7,9 @@ router.route('/').get(async (req, res) => {
   res.status(200).json(boards);
 });
 
+router.route('/').post(async (req, res) => {
+  const board = await boardsService.create(req);
+  res.status(201).json(board);
+});
+
 module.exports = router;
