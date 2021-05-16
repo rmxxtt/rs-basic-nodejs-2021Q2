@@ -9,4 +9,6 @@ const create = async (req) => {
   return board;
 };
 
-module.exports = { getAll, create };
+const get = async (req) => DB.boards.find(board => board.id === req.params.id);
+
+module.exports = { getAll, create, get };

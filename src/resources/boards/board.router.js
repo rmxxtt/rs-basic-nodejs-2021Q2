@@ -12,4 +12,13 @@ router.route('/').post(async (req, res) => {
   res.status(201).json(board);
 });
 
+router.route('/:id').get(async (req, res) => {
+  const board = await boardsService.get(req);
+  if (board) {
+    res.json(board);
+  }
+
+  res.status(404).send('Board not found');
+});
+
 module.exports = router;
