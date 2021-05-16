@@ -15,9 +15,9 @@ const update = async (req) => {
   const board = await get(req);
   if (board) {
     board.title = req.body.title;
-    board.columns.id = req.body.columns.id;
-    board.columns.title = req.body.columns.title;
-    board.columns.order = req.body.columns.order;
+    board.columns[0].id = req.body.columns[0].id;
+    board.columns[0].title = req.body.columns[0].title;
+    board.columns[0].order = req.body.columns[0].order;
     return board;
   }
 

@@ -5,11 +5,11 @@ class Board {
   constructor({
                 id = uuidv4(),
                 title = 'string',
-                columns = new Column(),
+                columns = [new Column()],
               } = {}) {
     this.id = id;
     this.title = title;
-    this.columns = new Column(columns);
+    this.columns = [new Column(columns[0])];
   }
 }
 
