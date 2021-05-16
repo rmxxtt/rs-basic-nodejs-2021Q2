@@ -30,6 +30,7 @@ const delete_ = async (req) => {
   }
   DB.users.splice(index, 1);
   return true;
+  // TODO When somebody DELETEs User, all Tasks where User is assignee should be updated to put userId = null.
 };
 
 module.exports = { getAll, create, get, update, delete_ };
