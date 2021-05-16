@@ -11,4 +11,17 @@ const create = async (req) => {
 
 const get = async (req) => DB.boards.find(board => board.id === req.params.id);
 
-module.exports = { getAll, create, get };
+const update = async (req) => {
+  const board = await get(req);
+  if (board) {
+    board.title = req.body.title;
+    board.columns.id = req.body.columns.id;
+    board.columns.title = req.body.columns.title;
+    board.columns.order = req.body.columns.order;
+    return board;
+  }
+
+  return false;
+};
+
+module.exports = { getAll, create, get, update };
