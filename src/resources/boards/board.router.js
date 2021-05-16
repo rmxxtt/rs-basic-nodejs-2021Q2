@@ -36,7 +36,7 @@ router.route('/:id').delete(async (req, res) => {
   if (wasUpdate) {
     res.status(200).send('The board has been deleted');
   } else {
-    res.status(200).send('Board not found');
+    res.status(404).send('Board not found');
   }
 });
 

@@ -17,27 +17,27 @@ router.route('/:id').get(async (req, res) => {
   const user = await usersService.get(req);
   if (user) {
     res.json(User.toResponse(user));
+  } else {
+    res.status(404).send('User not found');
   }
-
-  res.status(404).send('User not found');
 });
 
 router.route('/:id').put(async (req, res) => {
   const user = await usersService.update(req);
   if (user) {
     res.status(200).json(User.toResponse(user));
+  } else {
+    res.status(400).send('Bad request');
   }
-
-  res.status(400).send('Bad request');
 });
 
 router.route('/:id').delete(async (req, res) => {
   const wasUpdate = await usersService.delete_(req);
   if (wasUpdate) {
     res.status(204).send('The user has been deleted');
+  } else {
+    res.status(404).send('User not found');
   }
-
-  res.status(404).send('User not found');
 });
 
 module.exports = router;

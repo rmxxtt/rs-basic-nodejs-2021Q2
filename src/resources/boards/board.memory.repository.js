@@ -5,6 +5,8 @@ const getAll = async () => DB.boards;
 
 const create = async (req) => {
   const board = new BOARD(req.body);
+  // const board = new BOARD({...req.body, boardId: req.params.id});
+  // {...req.body,boardId: req.params.id}
   DB.boards.push(board);
   return board;
 };

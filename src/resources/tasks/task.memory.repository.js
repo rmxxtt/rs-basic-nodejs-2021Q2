@@ -5,7 +5,10 @@ const TASK = require('./task.model');
 const getAll = async () => DB.tasks;
 
 const create = async (req) => {
-  const board = new TASK(req.body);
+  // const board = new TASK(req.body);
+  // { ...req.body, boardId: req.params.id }
+  const board = new TASK({...req.body,boardId: req.params.id});
+  // console.log()
   DB.tasks.push(board);
   return board;
 };
@@ -32,7 +35,7 @@ const update = async (req) => {
 const delete_ = async (req) => {
   // const index = DB.tasks.findIndex(task_ => (task_.boardId === req.params.boardId && task_.id === req.params.taskId));
   const index = DB.tasks.findIndex(task_ => task_.id === req.params.taskId);
-  if (!index) {
+  if (index === -1) {
     return false;
   }
   DB.tasks.splice(index, 1);
