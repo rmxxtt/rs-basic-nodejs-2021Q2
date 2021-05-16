@@ -24,4 +24,14 @@ const update = async (req) => {
   return false;
 };
 
-module.exports = { getAll, create, get, update };
+const delete_ = async (req) => {
+  const index = DB.users.findIndex(board => board.id === req.params.id);
+  if(!index){
+    return false;
+  }
+  DB.users.splice(index, 1);
+  return true;
+  // TODO When somebody DELETEs Board, all its Tasks should be deleted as well.
+};
+
+module.exports = { getAll, create, get, update, delete_ };

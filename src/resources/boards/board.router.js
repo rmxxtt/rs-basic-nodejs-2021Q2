@@ -30,4 +30,13 @@ router.route('/:id').put(async (req, res) => {
   res.status(400).send('Bad request');
 });
 
+router.route('/:id').delete(async (req, res) => {
+  const wasUpdate = await boardsService.delete_(req);
+  if (wasUpdate) {
+    res.status(204).send('The board has been deleted');
+  }
+
+  res.status(404).send('Board not found');
+});
+
 module.exports = router;
