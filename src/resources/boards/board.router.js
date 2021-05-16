@@ -16,18 +16,18 @@ router.route('/:id').get(async (req, res) => {
   const board = await boardsService.get(req);
   if (board) {
     res.json(board);
+  } else {
+    res.status(404).send('Board not found');
   }
-
-  res.status(404).send('Board not found');
 });
 
 router.route('/:id').put(async (req, res) => {
   const board = await boardsService.update(req);
   if (board) {
     res.status(200).json(board);
+  } else {
+    res.status(400).send('Bad request');
   }
-
-  res.status(400).send('Bad request');
 });
 
 router.route('/:id').delete(async (req, res) => {
