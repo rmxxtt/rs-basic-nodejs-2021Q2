@@ -9,10 +9,10 @@ const create = async (req) => {
   return USER.toResponse(user);
 };
 
-const get = async (req) => DB.users.filter(user => user.id === req.params.id);
+const get = async (req) => DB.users.find(user => user.id === req.params.id);
 
 const update = async (req) => {
-  const user = (await get(req))[0];
+  const user = await get(req);
   if (user) {
     user.name = req.body.name;
     user.login = req.body.login;

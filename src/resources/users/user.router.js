@@ -15,8 +15,8 @@ router.route('/').post(async (req, res) => {
 
 router.route('/:id').get(async (req, res) => {
   const user = await usersService.get(req);
-  if (user.length) {
-    res.json(User.toResponse(user[0]));
+  if (user) {
+    res.json(User.toResponse(user));
   }
 
   res.status(404).send('User not found');
