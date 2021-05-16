@@ -32,11 +32,12 @@ router.route('/:id').put(async (req, res) => {
 
 router.route('/:id').delete(async (req, res) => {
   const wasUpdate = await boardsService.delete_(req);
+  // console.log('=================wasUpdate', wasUpdate)
   if (wasUpdate) {
-    res.status(204).send('The board has been deleted');
+    res.status(200).send('The board has been deleted');
+  } else {
+    res.status(200).send('Board not found');
   }
-
-  res.status(404).send('Board not found');
 });
 
 module.exports = router;

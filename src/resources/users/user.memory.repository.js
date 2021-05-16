@@ -29,6 +29,11 @@ const delete_ = async (req) => {
     return false;
   }
   DB.users.splice(index, 1);
+
+  const userTasks = DB.tasks.filter(task => task.userId === req.params.id);
+  // eslint-disable-next-line no-param-reassign
+  userTasks.forEach((element) => {element.userId = null});
+
   return true;
   // TODO When somebody DELETEs User, all Tasks where User is assignee should be updated to put userId = null.
 };

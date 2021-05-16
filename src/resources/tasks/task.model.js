@@ -1,15 +1,23 @@
 const { v4: uuidv4 } = require('uuid');
-const Column = require('../column/column.model');
+// const Column = require('../column/column.model');
 
 class Task {
   constructor({
                 id = uuidv4(),
                 title = 'string',
-                columns = [new Column()],
+                order = 0,
+                description = 'string',
+                userId = 'string',
+                boardId = 'string',
+                columnId =  'string'
               } = {}) {
     this.id = id;
     this.title = title;
-    this.columns = columns.map(column => new Column(column));
+    this.order = order;
+    this.description = description;
+    this.userId = userId;
+    this.boardId = boardId;
+    this.columnId = columnId;
   }
 }
 

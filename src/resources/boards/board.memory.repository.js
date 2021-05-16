@@ -25,11 +25,23 @@ const update = async (req) => {
 };
 
 const delete_ = async (req) => {
-  const index = DB.users.findIndex(board => board.id === req.params.id);
-  if(!index){
+  const index = DB.boards.findIndex(board => board.id === req.params.id);
+  // console.log('index 7 777', index)
+  if(index === -1){
     return false;
   }
-  DB.users.splice(index, 1);
+  // DB.boards.splice(index, 1);
+
+  // const tasks = DB.tasks.filter(task => task.boardId === req.params.id);
+  // tasks.forEach((element) => {element.userId = null});
+  for (let i = 0; i < DB.tasks.length; i += 1) {
+    // arr[i] += 5;
+    if (DB.tasks[i].boardId === req.params.id){
+      DB.tasks.splice(i, 1);
+    }
+  }
+
+  DB.boards.splice(index, 1);
   return true;
   // TODO When somebody DELETEs Board, all its Tasks should be deleted as well.
 };
