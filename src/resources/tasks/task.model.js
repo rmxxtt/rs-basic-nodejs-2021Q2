@@ -1,5 +1,4 @@
 const { v4: uuidv4 } = require('uuid');
-// const Column = require('../column/column.model');
 
 class Task {
   constructor({

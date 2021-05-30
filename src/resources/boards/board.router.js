@@ -1,5 +1,4 @@
 const router = require('express').Router();
-// const Board = require('./board.model');
 const boardsService = require('./board.service');
 
 router.route('/').get(async (req, res) => {
@@ -32,7 +31,6 @@ router.route('/:id').put(async (req, res) => {
 
 router.route('/:id').delete(async (req, res) => {
   const wasUpdate = await boardsService.delete_(req);
-  // console.log('=================wasUpdate', wasUpdate)
   if (wasUpdate) {
     res.status(200).send('The board has been deleted');
   } else {

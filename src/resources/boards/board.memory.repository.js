@@ -5,8 +5,6 @@ const getAll = async () => DB.boards;
 
 const create = async (req) => {
   const board = new BOARD(req.body);
-  // const board = new BOARD({...req.body, boardId: req.params.id});
-  // {...req.body,boardId: req.params.id}
   DB.boards.push(board);
   return board;
 };
@@ -28,23 +26,10 @@ const update = async (req) => {
 
 const delete_ = async (req) => {
   const index = DB.boards.findIndex(board => board.id === req.params.id);
-  console.log('===========index', index)
-  console.log('===========req.params.id', req.params)
 
   if(index === -1){
     return false;
   }
-  // DB.boards.splice(index, 1);
-
-  // const tasks = DB.tasks.filter(task => task.boardId === req.params.id);
-  // tasks.forEach((element) => {element.userId = null});
-
-  // for (let i = 0; i < DB.tasks.length; i += 1) {
-  //   // arr[i] += 5;
-  //   if (DB.tasks[i].boardId === req.params.id){
-  //     DB.tasks.splice(i, 1);
-  //   }
-  // }
 
   for (let i = DB.tasks.length - 1; i >= 0; i -= 1) {
     if (DB.tasks[i].boardId === req.params.id){
@@ -54,7 +39,6 @@ const delete_ = async (req) => {
 
   DB.boards.splice(index, 1);
   return true;
-  // TODO When somebody DELETEs Board, all its Tasks should be deleted as well.
 };
 
 module.exports = { getAll, create, get, update, delete_ };
