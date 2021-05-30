@@ -34,7 +34,7 @@ router.route('/:taskId').put(async (req, res) => {
 router.route('/:taskId').delete(async (req, res) => {
   const wasUpdate = await tasksService.delete_(req);
   if (wasUpdate) {
-    res.status(200).send('The task has been deleted');
+    res.status(204).send('The task has been deleted');
   } else {
     res.status(404).send('Task not found');
   }

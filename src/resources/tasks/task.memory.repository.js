@@ -7,7 +7,7 @@ const getAll = async () => DB.tasks;
 const create = async (req) => {
   // const board = new TASK(req.body);
   // { ...req.body, boardId: req.params.id }
-  const board = new TASK({...req.body,boardId: req.params.id});
+  const board = new TASK({...req.body,boardId: req.params.boardId});
   // console.log()
   DB.tasks.push(board);
   return board;
