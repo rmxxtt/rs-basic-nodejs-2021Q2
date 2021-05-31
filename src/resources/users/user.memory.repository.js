@@ -30,9 +30,23 @@ const delete_ = async (req) => {
   }
   DB.users.splice(index, 1);
 
-  const userTasks = DB.tasks.filter(task => task.userId === req.params.id);
+  // const userTasks = DB.tasks.filter(task => task.userId === req.params.id);
   // eslint-disable-next-line no-param-reassign,no-return-assign
-  userTasks.forEach(element => element.userId = null);
+  // userTasks.forEach(element => element.userId = null);
+
+  // DB.tasks = DB.tasks
+  //   .filter(task => task.userId === req.params.id)
+  //   .map(task => ({
+  //     ...task,
+  //     userId: null,
+  //   }));
+
+  for (let i = 0; i < DB.tasks.length; i += 1){
+    const task = DB.tasks[i];
+    if (task.userId === req.params.id) {
+      task.userId = null;
+    }
+  }
 
   return true;
 };
